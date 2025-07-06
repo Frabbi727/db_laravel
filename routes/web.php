@@ -8,6 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("users", [UserController::class, "getUserWithHttp"]);
 
-Route::get("/students", [StudentController::class, "getStudents"]);
+Route::get('/users', [UserController::class, 'queries'],);
+
+Route::get('/insert', [UserController::class, 'insertData'],);
+Route::get('/update', [UserController::class, 'updateData'],);
+Route::get('/delete', [UserController::class, 'deleteData'],);

@@ -1,61 +1,74 @@
-{{--
-<div style="padding: 20px; font-family: Arial, sans-serif;">
-    <h1 style="text-align: center; margin-bottom: 20px;">User List</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4f46e5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #4f46e5;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body>
 
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-        <tr style="background-color: #f2f2f2;">
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Name</th>
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Email</th>
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Phone</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($users as $user)
+<div class="container">
+    <h1>User List</h1>
+
+    @if(!empty($results) && count($results) > 0)
+        <table>
+            <thead>
             <tr>
-                <td style="border: 1px solid #ddd; padding: 12px;">{{ $user->name }}</td>
-                <td style="border: 1px solid #ddd; padding: 12px;">{{ $user->email }}</td>
-                <td style="border: 1px solid #ddd; padding: 12px;">{{ $user->phone }}</td>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-</div>
---}}
-
-
-
-<div class="max-w-6xl mx-auto mt-12 p-8 bg-gray-50 rounded-2xl shadow-lg">
-    <h1 class="text-4xl font-bold text-center text-indigo-600 mb-8">User List</h1>
-
-    @if(!empty($data) && count($data) > 0)
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
-                <thead class="bg-indigo-500 text-white">
+            </thead>
+            <tbody>
+            @foreach($results as $user)
                 <tr>
-                    <th class="py-3 px-6 text-left">#</th>
-                    <th class="py-3 px-6 text-left">Name</th>
-                    <th class="py-3 px-6 text-left">Email</th>
-                    <th class="py-3 px-6 text-left">Phone</th>
-                    <th class="py-3 px-6 text-left">City</th>
-                    <th class="py-3 px-6 text-left">Company</th>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->phone }}</td>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $index => $user)
-                    <tr class="{{ $index % 2 == 0 ? 'bg-gray-100' : 'bg-white' }} hover:bg-indigo-100 transition-colors">
-                        <td class="py-3 px-6">{{ $user->id }}</td>
-                        <td class="py-3 px-6 font-medium text-gray-800">{{ $user->name }}</td>
-                        <td class="py-3 px-6 text-gray-700">{{ $user->email }}</td>
-                        <td class="py-3 px-6 text-gray-700">{{ $user->phone }}</td>
-                        <td class="py-3 px-6 text-gray-700">{{ $user->address->city }}</td>
-                        <td class="py-3 px-6 text-gray-700">{{ $user->company->name }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+            @endforeach
+            </tbody>
+        </table>
     @else
-        <p class="text-center text-gray-500 text-lg">No users found.</p>
+        <p style="text-align: center; margin-top: 20px;">No users found.</p>
     @endif
 </div>
+
+</body>
+</html>
